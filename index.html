@@ -1,64 +1,52 @@
 <!doctype html>
 <html>
 <head>
-    <title></title>
-    <script>
-        function calculateTime() {
-            var numBytes = document.dl_calc.file_size.value * Math.pow(10, document.dl_calc.file_size_suffix.value);
-            var bandwidth = document.dl_calc.bandwidth.value * document.dl_calc.bandwidth_suffix.value;
-            var answer = ( numBytes / bandwidth ) / document.dl_calc.time.value;;
-            document.getElementById("answer").innerHTML = "" + parseFloat(answer).toFixed(2);
-        }
-    </script>
+    <title>File Transfer Calculator</title>
+    <script type="text/javascript" src="ftcalc.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<header>
-    <h1>File Transfer Time Calculator</h1
-</header>
-
 <body>
-<div id="dl_calc_form">
-    <p>
+<div id="ftCalcDiv">
+    <header>
+        <h1>File Transfer Calculator</h1>
+    </header>
 
-    <form name="dl_calc" onchange="calculateTime()";>
-        <label>File Size</label><input name="file_size" type="number" value="10">
-        <select name="file_size_suffix">
-            <option value="0">B</option>
-            <option value="3">KB</option>
-            <option value="6" selected="selected">MB</option>
-            <option value="9">GB</option>
-            <option value="12">TB</option>
-            <option value="15">PB</option>
-        </select>
-        at
-        <input name="bandwidth" type="number" value="25">
-        <select name="bandwidth_suffix">
+    <form name="ftCalc" id="ftCalc" onchange="calculateTime();">
+        At
+        <input id="bandwidth" name="bandwidth" type="number" value="25" size=10>
+        <select name="bandwidthSuffix">
             <option value="125">kbps</option>
-            <option value="125000" selected="selected">mbps</option>
+            <option value="125000" selected>mbps</option>
             <option value="125000000">gbps</option>
             <option value="1000">KBps</option>
             <option value="1000000">MBps</option>
             <option value="1000000000">GBps</option>
+        </select>,
+        <label for="fileSize"> a </label><input id="fileSize" name="fileSize" type="number" value="10" size=10>
+        <select name="fileSizeSuffix">
+            <option value="0">B</option>
+            <option value="3">KB</option>
+            <option value="6" selected>MB</option>
+            <option value="9">GB</option>
+            <option value="12">TB</option>
+            <option value="15">PB</option>
         </select>
-        will take <span id="answer"></span>
+        file will transfer in <span id="answer"></span>
         <select name="time">
             <option value="1">seconds</option>
             <option value="60">minutes</option>
             <option value="3600">hours</option>
             <option value="86400">days</option>
             <option value="604800">weeks</option>
-        </select>
+        </select>!
     </form>
-    </p>
+
+    <footer>
+        (c) 2013 victor dot wilson at gmail dot com
+    </footer>
 </div>
 </body>
 
-<footer>
-    (c) 2013 vew3
-</footer>
-
-<script>
-    calculateTime();
-</script>
 
 </html>
